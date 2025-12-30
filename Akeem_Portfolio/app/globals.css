@@ -1,26 +1,135 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #0a0a0a;
+  --border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.5);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: "PP Neue Montreal", "Inter", sans-serif;
+}
+
+.about-section {
+  padding: 15vh  5vw;
+  
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+/* Header */
+.about-header h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  max-width: 900px;
+  margin-bottom: 4rem;
+}
+
+.italic {
+  font-style: italic;
+  opacity: 0.7;
+}
+.highlight-text {
+  color: #e24e1b;
+}
+
+/* Content Layout */
+.about-content {
+  text-align: center;
+  display: grid;
+  text-align: center;
+
+}
+
+.bio p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 6rem;
+
+}
+
+.experience-list .exp-item {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.exp-item span {
+  font-size: 12px;
+  color: var(--text-dim);
+  width: 60px;
+}
+
+/* The Grid System */
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  
+}
+
+.grid-item {
+  height: 240px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.grid-item.wide {
+  grid-column: span 1;
+} 
+
+.grid-item p {
+  text-transform: uppercase;
+  font-weight: 500;
+  mix-blend-mode: difference; 
+}
+
+.highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+    width 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+    height 0.4s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+ 
+  .about-header h1 {
+    font-size: 2.5rem;
+  }
+  .grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
 }

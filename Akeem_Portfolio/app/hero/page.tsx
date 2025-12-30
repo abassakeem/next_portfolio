@@ -1,12 +1,18 @@
+'use client'
 import React from 'react'
+import ModeToggle from '../components/ModeToggle'
+import About from '../about/page'
 
 export default function Hero() {
     
+
+    
   return (
     <div>
-      <h1>Akeem lanre-Abass</h1>
-      <p>Welcome to my portfolio website!</p>
-      <p>Hero section</p>
+  
+
+      <ModeToggle />
+      <About />
     </div>
   )
 }
