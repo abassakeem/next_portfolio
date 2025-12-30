@@ -12,12 +12,12 @@
     width: 100%;
     height: 100%;
     background-color: var(--bg);
-    
+    overflow: hidden; /* ADD THIS */
 }
 
-.stickyCard{
+.stickyCard {
     position: relative;
-   width: 100%;
+    width: 100%;
     height: 100svh;
     background-color: var(--fg);
     color: var(--bg);
@@ -25,7 +25,7 @@
     display: flex;
     gap: 3rem;
     will-change: transform;
-
+    overflow: hidden; /* ADD THIS to prevent content overflow */
 }
 
 .stickyCard::after {
@@ -36,24 +36,29 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    opacity: var(--afterafter-opacity, 0);
+    opacity: var(--after-opacity, 0); /* FIX THE TYPO - was "afterafter" */
     transition: opacity 0.1s ease;
     pointer-events: none;
     z-index: 2;
 }
+
+.stickyCardContent {
+    flex: 4;
+    padding-top: 1.5rem;
+    overflow-y: auto; /* ADD THIS if content is too tall */
+    max-height: 100%; /* ADD THIS */
+}
 .stickyCardIndex{
     flex: 2;
 }
-.stickyCardContent{
-    flex: 4;
-    padding-top: 1.5rem;
-}
+
 
 .stickyCardContentWrapper{
     width: 75%;
    display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    overflow: hidden;
 }
 .stickyCardHeader{
 width: 75%;
@@ -93,21 +98,69 @@ width: 75%;
 }
 
 @media (max-width: 768px) {
-    .stickyCard{
+    .stickyCard {
         flex-direction: column;
-        gap: 0;
+        gap: 1rem;
+        padding: 1rem;
+        height: auto;
+        min-height: 100svh;
     }
-    .stickyCardContentWrapper{
+    
+    .stickyCardIndex {
+        flex: unset;
+        order: -1;
+    }
+    
+    .stickyCardIndex h1 {
+        font-size: 2rem;
+        margin: 0;
+    }
+    
+    .stickyCardContent {
+        padding-top: 0;
+        flex: unset;
+        overflow-y: visible;
+    }
+    
+    .stickyCardContentWrapper {
         width: 100%;
+        gap: 1rem;
     }
-    .stickyCardCopy{
+    
+    .stickyCardHeader {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    
+    .stickyCardImg {
+        margin: 0.5rem 0;
+        width: 100%;
+        max-height: 40vh;
+    }
+    
+    .stickyCardImg .projectImage {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 40vh;
+        object-fit: cover;
+    }
+    
+    .stickyCardCopy {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
-    .stickyCardIndex{
-        flex: 1;
+    
+    .stickyCardCopyTitle,
+    .stickyCardCopyDescription {
+        flex: unset;
     }
-    .stickyCardCopy{
-        flex-direction: column;
+    
+    .stickyCardCopyTitle p {
+        font-size: 0.875rem;
+    }
+    
+    .stickyCardCopyDescription p {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 }
