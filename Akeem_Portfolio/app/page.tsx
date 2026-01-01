@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Hero from "./hero/page";
+import Homepage from "./homepage/page";
 import { Inter, Poppins } from "next/font/google";
 
 const inter = Inter({
@@ -13,15 +13,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
 export default function Home() {
-
   const name = "Akeem";
   return (
-   <div className="">
-    <Hero />
-    {name}
-
-   </div>
+    <div className="">
+      <Homepage />
+      {name}
+    </div>
   );
 }

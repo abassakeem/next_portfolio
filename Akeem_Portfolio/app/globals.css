@@ -3,6 +3,16 @@
   --border: rgba(255, 255, 255, 0.1);
   --text-main: #ffffff;
   --text-dim: rgba(255, 255, 255, 0.5);
+  --tone-100: #000000;
+  --tone-200: #222;
+  --tone-300: #5b5c57;
+  --tone-400: #e3e4d8;
+  --tone-500: #fe0100;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
