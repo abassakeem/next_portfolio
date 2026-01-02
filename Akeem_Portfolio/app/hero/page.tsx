@@ -5,8 +5,6 @@ import Copy from "../components/Copy";
 import img from "../../public/cheats.gif";
 
 export default function Hero() {
-  const bgImageSrc = "https://media1.tenor.com/m/tRE_-tKKUxwAAAAd/cheats.gif";
-
   return (
     <main className={styles.hero_container}>
       {/* Navigation */}
@@ -20,12 +18,12 @@ export default function Hero() {
         <div className={styles.hero_contentBox}>
           <p className={styles.hero_name}>Akeem Lanre-Abass</p>
           <Copy blackColor="#111" duration={0.8}>
-            <h1 className={styles.hero_title}>Creative<br/>Developer</h1>
+            <h1 className={styles.hero_title}>Software<br/>Engineer</h1>
           </Copy>
 
           <Copy blackColor="#111" stagger={0.1} delay={0.5}>
             <p className={styles.hero_description}>
-              Building digital experiences that balance <span style={{color: 'var(--accent)'}}>technical precision</span> with aesthetic beauty.
+              Crafting high-performance digital solutions that bridge the gap between <span style={{color: 'var(--accent)'}}>enterprise security</span> and intuitive design.
             </p>
           </Copy>
         </div>
@@ -38,7 +36,6 @@ export default function Hero() {
             <h1 className={styles.hero_title}>About</h1>
           </Copy>
           
-          {/* Featured Image in Middle of Content */}
           <div className={styles.hero_imageLayer}>
             <Image 
                 src={img} 
@@ -50,28 +47,28 @@ export default function Hero() {
 
           <Copy blackColor="#111" stagger={0.08}>
             <p className={styles.hero_description}>
-              Full-stack expertise in React, Next.js, and Node.js. 
-              Focused on performance and modern interaction design.
+              Currently engineering secure  platforms. 
+              I specialize in React, Next.js, and Cloud Infrastructure to build scalable, pixel-perfect applications.
             </p>
           </Copy>
         </div>
       </section>
 
-      {/* Outro / CTA Section - High Contrast Flip */}
+      {/* Outro / CTA Section */}
       <section className={`${styles.hero_mainSection} ${styles.hero_cta}`}>
         <div className={styles.hero_contentBox}>
           <Copy blackColor="#fff" duration={0.8}>
-            <h1 className={styles.hero_title}>Let's Talk</h1>
+            <h1 className={styles.hero_title}>Let's Connect</h1>
           </Copy>
 
           <Copy blackColor="#fff" delay={0.4}>
             <p className={styles.hero_description}>
-              Available for freelance and full-time collaborations.
+              Open to innovative projects and full-stack engineering collaborations.
             </p>
           </Copy>
           
           <div style={{marginTop: '3rem'}}>
-             <a href="mailto:hello@akeem.com" style={{fontSize: '1.2rem', textDecoration: 'underline', color: 'white'}}>
+             <a href="mailto:lanreabassab1@gmail.com" style={{fontSize: '1.2rem', textDecoration: 'underline', color: 'white'}}>
                lanreabassab1@gmail.com
              </a>
           </div>

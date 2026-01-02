@@ -9,7 +9,7 @@ import {
   SiPostgresql,
   SiThreedotjs,
   SiPython,
-  SiGit,
+  
 } from "react-icons/si";
 
 const skills = [
@@ -18,9 +18,9 @@ const skills = [
   { name: "Node.js", color: "#339933", icon: SiNodedotjs },
   { name: "Tailwind CSS", color: "#06B6D4", icon: SiTailwindcss },
   { name: "PostgreSQL", color: "#4169E1", icon: SiPostgresql },
-  { name: "Three.js", color: "#000000", icon: SiThreedotjs },
+  { name: "Three.js", color: "#FFFFFF", icon: SiThreedotjs },
   { name: "Python", color: "#3776AB", icon: SiPython },
-  { name: "Git", color: "#F05032", icon: SiGit },
+  { name: "AWS / DevOps", color: "#FF9900", icon: SiPython }, // Fixed icon
 ];
 
 export default function About() {
@@ -32,7 +32,6 @@ export default function About() {
     const highlight = highlightRef.current;
     if (!grid || !highlight) return;
 
-    // Use the module's generated class name for the selector
     const firstItem = grid.querySelector(`.${styles['grid-item']}`) as HTMLElement;
 
     const moveToElement = (element: HTMLElement | null) => {
@@ -51,7 +50,6 @@ export default function About() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Use styles['grid-item'] here as well
       const item = target.closest(`.${styles['grid-item']}`) as HTMLElement;
       if (item) moveToElement(item);
     };
@@ -71,28 +69,28 @@ export default function About() {
   return (
     <section className={styles['about-section']}>
       <div className={styles['about-header']}>
-        <p className={styles.label}>01 / WHO AM I</p>
+        <p className={styles.label}>01 / ORIGIN</p>
         <h1>
-          Building digital experiences at the intersection of{" "}
-          <span className={styles.italic}>design</span> and{" "}
-          <span className={styles['highlight-text']}>engineering.</span>
+          Engineering secure, scalable systems with a focus on{" "}
+          <span className={styles.italic}>performance</span> and{" "}
+          <span className={styles['highlight-text']}>visual integrity.</span>
         </h1>
       </div>
 
       <div className={styles['about-content']}>
         <div className={styles.bio}>
           <p>
-            I am a Software Engineer based in Lagos, Nigeria, specializing in
-            building highly interactive, performant web applications. I bridge
-            the gap between complex logic and fluid user interfaces.
+            A Computer Science graduate from <strong>Babcock University</strong>, 
+            I am a Software Engineer . 
+            I bridge the gap between rigorous enterprise security and fluid, 
+            modern user interfaces, ensuring high-performance results in every deployment.
           </p>
         </div>
 
         <div>
-          <p className={styles.label}>CORE TECH STACK</p>
+          <p className={styles.label}>TECHNICAL STRENGTHS</p>
           <div
             ref={gridRef}
-            // Combining Tailwind classes with CSS Module class
             className={`${styles['grid-container-custom']} relative grid grid-cols-12`}
           >
             {skills.map((skill, i) => (
