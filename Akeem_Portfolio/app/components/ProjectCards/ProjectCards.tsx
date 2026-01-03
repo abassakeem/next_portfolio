@@ -6,52 +6,19 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { usePortfolio } from "../../context/PortfolioContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectCards() {
-  const projects: {
-    id: number;
-    title: string;
-    image: string;
-    description: string;
-  }[] = [
-    {
-      id: 1,
-      title: "Project 1",
-      image: "/projects/apple.png",
-      description: "Description for project 1",
-    },
-    {
-      id: 2,
-      title: "Project 2",
-      image: "/projects/bupower.png",
-      description: "Description for project 2",
-    },
-    {
-      id: 3,
-      title: "Project 3",
-      image: "/projects/getlinked.png",
-      description: "Description for project 3",
-    },
-    {
-      id: 4,
-      title: "Project 4",
-      image: "/projects/hangman.png",
-      description: "Description for project 4",
-    },
-    {
-      id: 5,
-      title: "Project 5",
-      image: "/projects/guess.png",
-      description: "Description for project 5",
-    },
-  ];
-
+  const { content, mode } = usePortfolio(); // Access dynamic project list
   const container = useRef(null);
 
   useGSAP(
     () => {
+      // Clear existing triggers to prevent stacking during mode toggle
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+
       const projectCards = document.querySelectorAll(`.${styles.stickyCard}`);
 
       projectCards.forEach((project, index) => {
@@ -68,54 +35,65 @@ export default function ProjectCards() {
         }
 
         if (index < projectCards.length - 1) {
-            ScrollTrigger.create({
-              trigger: project,
-              start: "top bottom",
-              end: "top top",
-              onUpdate: (self) => {
-                const progress = self.progress;
-                const scale = 1 - progress * 0.25;
-                const rotation = (index % 2 === 0 ? 5 : -5) * progress;
-                const afterOpacity = progress;
+          ScrollTrigger.create({
+            trigger: project,
+            start: "top bottom",
+            end: "top top",
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const scale = 1 - progress * 0.1; // Reduced scale slightly for better UX
+              const rotation = (index % 2 === 0 ? 2 : -2) * progress;
+              const afterOpacity = progress;
 
-                gsap.set(project, {
-                    scale: scale,
-                    rotation: rotation,
-                    "--after-opacity": afterOpacity,
-                });
-              },
-            });
-          }
-        });
-      },
-      { scope: container }
+              gsap.set(project, {
+                scale: scale,
+                rotation: rotation,
+                "--after-opacity": afterOpacity,
+              });
+            },
+          });
+        }
+      });
+
+      // Force a refresh once elements are rendered
+      ScrollTrigger.refresh();
+    },
+    { scope: container, dependencies: [mode] } // Re-run animation logic when mode changes
   );
+  
 
   return (
-    <div className={styles.stickyCards} ref={container}>
-      {projects.map((project) => (
-        <div key={project.id} className={styles.stickyCard}>
+    <div
+      className={styles.stickyCards}
+      ref={container}
+      key={mode} // Crucial: Re-mounts the container to reset card refs
+    >
+      {content.projects.map((project: any) => (
+        <div key={`${mode}-${project.id}`} className={styles.stickyCard}>
           <div className={styles.stickyCardIndex}>
-            <h1>{project.id}</h1>
+            <h1>0{project.id}</h1>
           </div>
           <div className={styles.stickyCardContent}>
             <div className={styles.stickyCardContentWrapper}>
               <h1 className={styles.stickyCardHeader}>{project.title}</h1>
-          <div className={styles.stickyCardImg}>
+              <div className={styles.stickyCardImg}>
+                <div className={styles.stickyCardImgWrapper}>
   <Image
     src={project.image}
     alt={project.title}
-    // Remove layout="responsive" as it's deprecated in newer Next.js versions
-    width={800} // This defines the aspect ratio base
-    height={480} // Matches your 5/3 aspect ratio
-    className="w-full h-auto object-cover rounded-lg"
-    sizes="(max-width: 768px) 100vw, 50vw"
+    fill // This makes the image fill the parent container
+    className="object-cover rounded-lg" // Replaces manual width/height logic
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+    priority={project.id === 1}
   />
 </div>
+              </div>
 
               <div className={styles.stickyCardCopy}>
                 <div className={styles.stickyCardCopyTitle}>
-                  <p className="bg-white">( About this project )</p>
+                  <p className="bg-white px-2">
+                    ( {mode === "developer" ? "Build Specs" : "Test Specs"} )
+                  </p>
                 </div>
 
                 <div className={styles.stickyCardCopyDescription}>
