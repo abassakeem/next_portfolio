@@ -74,7 +74,7 @@ export default function Copy({
                 block.style.zIndex = "2";
                 wrapper.appendChild(block);
 
-                allLines.push(line);
+                allLines.push(line as HTMLElement);
                 allBlocks.push(block);
             });
         });
