@@ -14,11 +14,11 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-  const name = "Akeem";
+
   return (
     <div className="">
       <Homepage />
-      {name}
+   
     </div>
   );
 }
