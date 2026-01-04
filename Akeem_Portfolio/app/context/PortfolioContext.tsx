@@ -1,7 +1,11 @@
 "use client";
 import React, { createContext, useContext, useState, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // 1. Add this
 import { portfolioData } from "../data/portfolioData";
+
+// Register the plugin
+gsap.registerPlugin(ScrollTrigger); // 2. Add this
 
 type Mode = "developer" | "qa";
 
@@ -9,7 +13,7 @@ interface PortfolioContextType {
   mode: Mode;
   toggleMode: () => void;
   content: typeof portfolioData.developer;
-  contentRef: React.RefObject<HTMLDivElement>;
+  contentRef: React.RefObject<HTMLDivElement | null>; // ✅ Matches useRef(null)
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
@@ -18,7 +22,7 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<Mode>("developer");
   const contentRef = useRef<HTMLDivElement>(null);
 
-const toggleMode = () => {
+  const toggleMode = () => {
     if (!contentRef.current) return;
 
     const tl = gsap.timeline();
@@ -30,9 +34,8 @@ const toggleMode = () => {
       onComplete: () => {
         setMode((prev) => (prev === "developer" ? "qa" : "developer"));
         
-        // Wait for React to finish rendering the new cards
         setTimeout(() => {
-          ScrollTrigger.refresh(true); // The 'true' forces a deeper refresh
+          ScrollTrigger.refresh(true); 
         }, 100); 
       }
     })
@@ -42,8 +45,16 @@ const toggleMode = () => {
       duration: 0.4,
     });
   };
+
   return (
-    <PortfolioContext.Provider value={{ mode, toggleMode, content: portfolioData[mode], contentRef }}>
+    <PortfolioContext.Provider 
+      value={{ 
+        mode, 
+        toggleMode, 
+        content: portfolioData[mode], // Ensure portfolioData is typed with [key in Mode]
+        contentRef 
+      }}
+    >
       {children}
     </PortfolioContext.Provider>
   );
