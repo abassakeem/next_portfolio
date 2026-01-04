@@ -68,8 +68,8 @@ export default function Hero() {
           <Copy key={`about-${mode}`} blackColor="#111" stagger={0.08}>
             <p className={styles.hero_description}>
               {/* 4. Use dynamic bio text from your portfolioData */}
-              {content.bio ||
-                "Engineering secure platforms with focus on performance."}
+             
+                Engineering secure platforms with focus on performance.
             </p>
           </Copy>
         </div>
