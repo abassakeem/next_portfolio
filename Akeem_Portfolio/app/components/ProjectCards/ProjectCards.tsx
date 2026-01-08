@@ -14,12 +14,13 @@ export default function ProjectCards() {
   const { content, mode } = usePortfolio(); // Access dynamic project list
   const container = useRef(null);
 
-  useGSAP(
-    () => {
-      // Clear existing triggers to prevent stacking during mode toggle
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+useGSAP((self) => {
+  
 
-      const projectCards = document.querySelectorAll(`.${styles.stickyCard}`);
+      // Clear existing triggers to prevent stacking during mode toggle
+     
+
+      const projectCards = self.selector(`.${styles.stickyCard}`);
 
       projectCards.forEach((project, index) => {
         if (index < projectCards.length - 1) {

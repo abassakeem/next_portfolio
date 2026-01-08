@@ -107,7 +107,7 @@ export const portfolioData = {
     ],
     projects: projectsSE,
     about: {
-      bio: "A Computer Science graduate from Babcock University, I am a Software Engineer bridging the gap between rigorous enterprise security and fluid, modern user interfaces.",
+      bio: "A Software Engineer crafting secure, scalable systems while delivering intuitive, modern user experiences..",
       skills: [
         { name: "React / Next.js", color: "#61DAFB", icon: SiReact },
         { name: "TypeScript", color: "#3178C6", icon: SiTypescript },
@@ -135,7 +135,7 @@ export const portfolioData = {
     ],
     projects: projectsQA,
     about: {
-      bio: "As a Quality Engineer, I specialize in end-to-end automation and security compliance. I ensure software resilience through rigorous testing frameworks and vulnerability assessments.",
+      bio: "Ensuring software quality, security, and confidence in every release.",
       skills: [
         { name: "Selenium", color: "#43B02A", icon: SiSelenium },
         { name: "Cypress", color: "#17202C", icon: SiCypress },
