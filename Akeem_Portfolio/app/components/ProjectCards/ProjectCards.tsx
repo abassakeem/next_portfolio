@@ -20,10 +20,11 @@ useGSAP((self) => {
       // Clear existing triggers to prevent stacking during mode toggle
      
 const projectCards =
-  self.selector?.(`.${styles.stickyCard}`) ?? [];
+  (self.selector?.(`.${styles.stickyCard}`) as HTMLElement[]) ?? [];
 
 
-      projectCards.forEach((project, index) => {
+
+      projectCards.forEach((project: HTMLElement, index: number) => {
         if (index < projectCards.length - 1) {
           ScrollTrigger.create({
             trigger: project,
