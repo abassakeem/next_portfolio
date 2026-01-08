@@ -19,8 +19,9 @@ useGSAP((self) => {
 
       // Clear existing triggers to prevent stacking during mode toggle
      
+const projectCards =
+  self.selector?.(`.${styles.stickyCard}`) ?? [];
 
-      const projectCards = self.selector(`.${styles.stickyCard}`);
 
       projectCards.forEach((project, index) => {
         if (index < projectCards.length - 1) {
